@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<movies>
+  <movie>
+    <movieName>Bruno</movieName>
+    <theaterName>nulla</theaterName>
+    <location>id</location>
+    <date>esse</date>
+    <screenNo>velit</screenNo>
+    <availableSeats>dolorem</availableSeats>
+    <cost>modi</cost>
+    <code/>
+  </movie>
+  <movie>
+    <movieName>Alona</movieName>
+    <theaterName>qui</theaterName>
+    <location>anim</location>
+    <date>voluptatem</date>
+    <screenNo>veniam,</screenNo>
+    <availableSeats>veniam,</availableSeats>
+    <cost>veritatis</cost>
+    <code/>
+  </movie>
+</movies>

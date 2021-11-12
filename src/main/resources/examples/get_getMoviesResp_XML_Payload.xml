@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<movies>
+	<movie>
+		<movieName>Clifford</movieName>
+		<theaterName>cupidatat</theaterName>
+		<location>perspiciatis</location>
+		<date>autem</date>
+		<screenNo>qui</screenNo>
+		<availableSeats>ab</availableSeats>
+		<cost>porro</cost>
+		<code>
+			<GPR4>Flat ₹ 100 off</GPR4>
+			<GPR6>Flat ₹ 150 off</GPR6>
+			<GPR8>Flat ₹ 200 off</GPR8>
+		</code>
+	</movie>
+	<movie>
+		<movieName>Agustin</movieName>
+		<theaterName>amet,</theaterName>
+		<location>ea</location>
+		<date>occaecat</date>
+		<screenNo>sit</screenNo>
+		<availableSeats>iste</availableSeats>
+		<cost>aliquid</cost>
+		<code>
+			<GPR4>Flat ₹ 100 off</GPR4>
+			<GPR6>Flat ₹ 150 off</GPR6>
+			<GPR8>Flat ₹ 200 off</GPR8>
+		</code>
+	</movie>
+</movies>

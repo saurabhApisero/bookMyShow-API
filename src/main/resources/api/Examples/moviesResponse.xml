@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<movies>
+	<movie>
+		<movieName>FREE GUY</movieName>
+		<theaterName>Esquare</theaterName>
+		<location>Hinjewadi, Pune</location>
+		<date>2021-10-05</date>
+		<screenNo>3</screenNo>
+		<availableSeats>150</availableSeats>
+		<cost>100
+		</cost>
+		<code>
+			<GRP4>Flat ₹ 100 off</GRP4>
+			<GRP6>Flat ₹ 150 off</GRP6>
+			<GRP8>Flat ₹ 200 off</GRP8>
+		</code>
+	</movie>
+	<movie>
+		<movieName>FREE GUY</movieName>
+		<theaterName>PVR Cinemas</theaterName>
+		<location>Koramangala, Banglore</location>
+		<date>2021-10-05</date>
+		<screenNo>2</screenNo>
+		<availableSeats>200</availableSeats>
+		<cost>
+			200
+		</cost>
+		<code>
+			<GRP4>Flat ₹ 100 off</GRP4>
+			<GRP6>Flat ₹ 150 off</GRP6>
+			<GRP8>Flat ₹ 200 off</GRP8>
+		</code>
+	</movie>
+	<movie>
+		<movieName>FREE GUY</movieName>
+		<theaterName>Cinepolis</theaterName>
+		<location>V3 Mall, Delhi</location>
+		<date>2021-10-05</date>
+		<screenNo>1</screenNo>
+		<availableSeats>325</availableSeats>
+		<cost>
+			400
+		</cost>
+		<code>
+			<GRP4>Flat ₹ 100 off</GRP4>
+			<GRP6>Flat ₹ 150 off</GRP6>
+			<GRP8>Flat ₹ 200 off</GRP8>
+		</code>
+	</movie>
+</movies>

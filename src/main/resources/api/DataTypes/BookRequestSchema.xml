@@ -1,0 +1,16 @@
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://goj.demo.com">
+	<xsd:element name="movies">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="movieName" minOccurs="1" type="xsd:string"/>
+				<xsd:element name="theaterName" minOccurs="1" type="xsd:string"/>
+				<xsd:element name="location" minOccurs="1" type="xsd:string"/>
+				<xsd:element name="date" minOccurs="1" type="xsd:date"/>
+				<xsd:element name="screenNo" minOccurs="1" type="xsd:integer"/>
+				<xsd:element name="NumberOfSeats" minOccurs="1" type="xsd:integer"/>
+				<xsd:element name="costPerSeat" minOccurs="1" type="xsd:integer"/>
+				<xsd:element name="discount" minOccurs="1" type="xsd:integer"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

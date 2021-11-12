@@ -1,0 +1,30 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="movies">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="movie">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="xs:string" name="movieName"/>
+							<xs:element type="xs:string" name="theaterName"/>
+							<xs:element type="xs:string" name="location"/>
+							<xs:element type="xs:date" name="date"/>
+							<xs:element type="xs:string" name="screenNo"/>
+							<xs:element type="xs:string" name="availableSeats"/>
+							<xs:element type="xs:string" name="cost"/>
+							<xs:element name="code">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:string" name="GPR4"/>
+										<xs:element type="xs:string" name="GPR6"/>
+										<xs:element type="xs:string" name="GPR8"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,21 @@
+%dw 2.0
+
+type auto_cad67177_fad7_4f90_a94e_fb6a4193bab3_Output_Payload = {|
+  movies: {|
+    movie*: {|
+      movieName: String, 
+      theaterName: String, 
+      location: String, 
+      date: String, 
+      screenNo: String, 
+      availableSeats: String, 
+      cost: String, 
+      code: {|
+        GRP4: String, 
+        GRP6: String, 
+        GRP8: String
+      |}
+    |}
+  |}
+|}
+

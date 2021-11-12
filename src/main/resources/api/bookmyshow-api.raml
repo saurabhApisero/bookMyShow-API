@@ -1,0 +1,51 @@
+#%RAML 1.0
+title: BookMyShow API
+description: This is an API for getting movie information.
+mediaType: 
+- application/xml
+
+protocols:
+  - HTTPS
+
+uses:
+  MoviesResource: ResourceTypes/MoviesResourceType.raml
+
+/movies:
+  get:
+  type:
+    MoviesResource.movieCollection:      
+      exampleReference1: !include Examples/moviesResponse.xml
+      exampleReference2: !include DataTypes/MoviesResponseDataType.raml
+
+  /{movieName}:
+    type:
+      MoviesResource.movieCollection:
+        exampleReference1: !include Examples/moviesResponse.xml
+        exampleReference2: !include DataTypes/MoviesResponseDataType.raml
+    get:
+      queryParameters:
+        location?:
+          enum:
+            - Pune
+            - Bangalore
+            
+        date?:
+          type: date-only
+      
+/bookmovies:
+  post:
+  type:
+    MoviesResource.movieCollection:
+      exampleReference3: !include DataTypes/BookMoviesRequest.raml
+      exampleReference4: !include Examples/BookMoviesRequest.xml
+      exampleReference5: 
+      exampleReference6: 
+
+    
+
+        
+
+              
+              
+      
+

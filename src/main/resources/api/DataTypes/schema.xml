@@ -1,0 +1,27 @@
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="movies" type="moviesType"/>
+	<xsd:complexType name="moviesType">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" name="movie" type="movieType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="movieType">
+		<xsd:sequence>
+			<xsd:element name="movieName" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="theaterName" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="location" minOccurs="0" type="xsd:string"/>
+			<xsd:element name="date" minOccurs="0" type="xsd:date"/>
+			<xsd:element name="screenNo" minOccurs="0" type="xsd:integer"/>
+			<xsd:element name="availableSeats" minOccurs="0" type="xsd:integer"/>
+			<xsd:element name="cost" minOccurs="0" type="xsd:integer"/>
+			<xsd:element name="code" minOccurs="0" type="codeType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="codeType">
+		<xsd:sequence>
+			<xsd:element name="GRP4" type="xsd:string"/>
+			<xsd:element name="GRP6" type="xsd:string"/>
+			<xsd:element name="GRP8" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

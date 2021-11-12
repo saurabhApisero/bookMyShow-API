@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc" xmlns:validation="http://www.mulesoft.org/schema/mule/validation"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd">
+	<sub-flow name="varsFlow" doc:id="c74cd403-b2ae-405f-8b3a-782aa0e0a6a0" >
+		<set-variable value="#[attributes.uriParams.movieName]" doc:name="Set movieName" doc:id="8e4dd807-a0c5-4236-a70d-8863fef8ffb4" variableName="movieName" />
+		<set-variable value="#[message.attributes.queryParams.location]" doc:name="Set location" doc:id="d2ba57c1-440c-4a2d-9d57-afb01e45ab30" variableName="location" />
+		<set-variable value="#[message.attributes.queryParams.date]" doc:name="Set date" doc:id="8cfe562c-4cff-4630-8859-1d8458e4a965" variableName="date" />
+	</sub-flow>
+	<flow name="getMoviesFlow" doc:id="cad67177-fad7-4f90-a94e-fb6a4193bab3" >
+		<ee:transform doc:name="getMovies" doc:id="3e266f2c-4245-466d-971e-02ecc014421c">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/xml
+---
+{
+  movies: {
+    movie: {
+      movieName: "FREE GUY",
+      theaterName: "Esquare",
+      location: "Pune",
+      date: "2021-10-05",
+      screenNo: "3",
+      availableSeats: "150",
+      cost: "100",
+      code: {
+        GRP4: "Flat ₹ 100 off",
+        GRP6: "Flat ₹ 150 off",
+        GRP8: "Flat ₹ 200 off"
+      }
+    },
+    movie: {
+      movieName: "Terminator",
+      theaterName: "PVR Cinemas",
+      location: "Bangalore",
+      date: "2021-10-05",
+      screenNo: "2",
+      availableSeats: "200",
+      cost: "200",
+      code: {
+        GRP4: "Flat ₹ 100 off",
+        GRP6: "Flat ₹ 150 off",
+        GRP8: "Flat ₹ 200 off"
+      }
+    },
+    movie: {
+      movieName: "John Wick",
+      theaterName: "Cinepolis",
+      location: "Bangalore",
+      date: "2021-10-05",
+      screenNo: "1",
+      availableSeats: "325",
+      cost: "400",
+      code: {
+        GRP4: "Flat ₹ 100 off",
+        GRP6: "Flat ₹ 150 off",
+        GRP8: "Flat ₹ 200 off"
+      }
+    }
+  }
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getMovies-location-date-flow" doc:id="15147de5-358b-4496-913c-d738adf46ed0" >
+		<flow-ref doc:name="varsFlow Reference" doc:id="a4cb8a56-9345-4dbe-9b46-54e0fabbdd47" name="varsFlow" />
+		<validation:is-true doc:name="validate MovieName" doc:id="3a3a92e2-a6bf-44f9-a2e0-bba2c6527e12" expression="#[Mule::lookup('distinctMovies','') contains  vars.movieName]" message="#[vars.movieName ++ ' shows not yet listed.']">
+			<error-mapping targetType="APP:ANY" />
+		</validation:is-true>
+		<choice doc:name="Choice" doc:id="c5a739d2-4dcd-4adb-a4b3-3ffbd411df40" >
+			<when expression='#[vars.location != null and vars.date != null]'>
+				<flow-ref doc:name="getMoviesFlow Ref" doc:id="367b3d3d-1154-4d3e-ad15-a40623fe06df" name="getMoviesFlow"/>
+				<ee:transform doc:name="getMovies by loc &amp; date" doc:id="acba9fc7-87c5-422f-b0ed-67c0acaff355" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+---
+movies:
+movie:payload.movies.*movie filter($.movieName == vars.movieName and $.location == vars.location and $.date == vars.date)  map{
+	
+	movieName: $.movieName,
+	theaterName: $.theaterName,
+	location: $.location,
+	date: $.date,
+	screenNo: $.screenNo,
+	availableSeats: $.availableSeats,
+	cost: $.cost,
+	code: $.code
+}
+
+
+
+
+
+]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<when expression="#[vars.location != null or vars.date != null]">
+				<flow-ref doc:name="getMoviesFlow Ref" doc:id="5b7727a8-65cd-4513-9d5a-ea4602949b08" name="getMoviesFlow"/>
+				<ee:transform doc:name="getMovies loc or date" doc:id="054760a0-f090-4582-aaab-d813946806f7" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+---
+if(vars.location != null)
+	movies:
+	movie:payload.movies.*movie filter($.movieName == vars.movieName and $.location == vars.location)  map{
+		
+		movieName: $.movieName,
+		theaterName: $.theaterName,
+		location: $.location,
+		date: $.date,
+		screenNo: $.screenNo,
+		availableSeats: $.availableSeats,
+		cost: $.cost,
+		code: $.code
+	}
+else 
+	movies:
+	movie:payload.movies.*movie filter($.movieName == vars.movieName and $.date == vars.date) map{
+		
+		movieName: $.movieName,
+		theaterName: $.theaterName,
+		location: $.location,
+		date: $.date,
+		screenNo: $.screenNo,
+		availableSeats: $.availableSeats,
+		cost: $.cost,
+		code: $.code
+	}
+
+
+
+]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise >
+				<flow-ref doc:name="getMoviesFlow Ref" doc:id="bccadd89-567c-4e39-b159-2d66ffdfdbf3" name="getMoviesFlow"/>
+				<ee:transform doc:name="getMovies by movieName" doc:id="4c95ec6f-243c-4aae-8035-3233d9d4ad0d" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+---
+movies:
+movie: payload.movies.*movie filter($.movieName == vars.movieName) map{
+	
+	movieName: $.movieName,
+	theaterName: $.theaterName,
+	location: $.location,
+	date: $.date,
+	screenNo: $.screenNo,
+	availableSeats: $.availableSeats,
+	cost: $.cost,
+	code: $.code	
+	
+	
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</otherwise>
+		</choice>
+	</flow>
+	<flow name="BookMovies-Flow" doc:id="92a6dd6a-bb1a-4230-b220-ae415def5195" >
+		<wsc:consume operation="bookMovies" doc:name="bookMovies SOAP Service" doc:id="fd62ec76-18bc-45d5-b651-78605e40f020" config-ref="Web_Service_Consumer_Config"/>
+		<ee:transform doc:name="eticket Resp" doc:id="7181e8ff-cde5-4dc3-8782-b76bd0129829" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+---
+payload.body]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="distinctMovies" doc:id="5039de84-8310-4a22-aa9a-ccdb887cf888" >
+		<flow-ref doc:name="getMoviesFlow Ref" doc:id="3531be1b-d152-40f1-97dc-8d333077b7e7" name="getMoviesFlow"/>
+		<ee:transform doc:name="distinct movies" doc:id="804c7f94-b1f8-4bcf-b5c6-072e3152d00e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload.movies.*movie.movieName distinctBy $
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

@@ -1,0 +1,14 @@
+{
+  "sampleData": {
+    "acba9fc7-87c5-422f-b0ed-67c0acaff355": {
+      "payload": "sample_data/movies_1.xml",
+      "vars-date": "sample_data/defaultnulltype.dwl",
+      "vars-location": "sample_data/defaultnulltype_2.dwl",
+      "vars-movieName": "sample_data/defaultstringtype.dwl"
+    },
+    "f613c06c-2be5-4479-8742-361f71eb517c": {},
+    "804c7f94-b1f8-4bcf-b5c6-072e3152d00e": {
+      "payload": "sample_data/movies_2.xml"
+    }
+  }
+}

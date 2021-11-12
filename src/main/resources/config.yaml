@@ -1,0 +1,8 @@
+http:
+  port: "8081"
+  
+wsdl:
+  location: "http://ordermanagement-api-v1.us-e2.cloudhub.io/BookTicket/Eticket?wsdl"
+  service: "BookTicket"
+  port: "Eticket"
+  

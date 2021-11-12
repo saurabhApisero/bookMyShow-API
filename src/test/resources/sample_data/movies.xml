@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<movies>
+  <movie>
+    <movieName>Clifford</movieName>
+    <theaterName>cupidatat</theaterName>
+    <location>perspiciatis</location>
+    <date>2021-10-10</date>
+    <screenNo>qui</screenNo>
+    <availableSeats>ab</availableSeats>
+    <cost>porro</cost>
+    <code/>
+  </movie>
+  <movie>
+    <movieName>Agustin</movieName>
+    <theaterName>amet,</theaterName>
+    <location>ea</location>
+    <date>occaecat</date>
+    <screenNo>sit</screenNo>
+    <availableSeats>iste</availableSeats>
+    <cost>aliquid</cost>
+    <code/>
+  </movie>
+</movies>

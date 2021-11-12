@@ -1,0 +1,38 @@
+#%RAML 1.0 Library
+
+traits:
+  headerTrait: !include ../Traits/headerTrait.raml
+  errorTrait: !include ../Traits/errorResponsesTrait.raml
+
+types:
+  schemaResp: |
+    <<exampleReference3>>
+
+resourceTypes:
+  movieCollection:
+    is: [headerTrait,errorTrait]      
+    get?:
+      description: This is used to fetch <<resourcePathName>>
+      responses:
+        200:
+          body:
+            application/xml:
+              type: |
+                <<exampleReference2>>
+              example: |
+                <<exampleReference1>>
+    
+    post?:
+      description: This is used to post <<resourcePathName>>
+      body:
+        application/xml:
+          type: |
+            <<exampleReference3>>
+          example: |
+            <<exampleReference4>>
+      responses:
+        200:
+          body:
+            application/xml:
+      
+

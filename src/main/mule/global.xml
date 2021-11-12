@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd">
+	<configuration doc:name="Configuration" doc:id="c751048d-249b-498b-b67b-b99195e252f4" defaultErrorHandler-ref="GlobalError_Handler" />
+	<configuration-properties doc:name="Configuration properties" doc:id="c54036f4-8087-4e86-b176-13d72c6c7e9e" file="config.yaml" />
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6a308213-7fbe-492c-8c2c-2e565af93f96" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<wsc:config name="Web_Service_Consumer_Config" doc:name="Web Service Consumer Config" doc:id="22d99875-2e50-4bca-a0ec-d4125eab234f" >
+		<wsc:connection wsdlLocation="${wsdl.location}" service="${wsdl.service}" port="${wsdl.port}"/>
+	</wsc:config>
+	<error-handler name="GlobalError_Handler" doc:id="772d5624-989d-4f57-9a6a-acd41a114452" >
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="1388e559-039d-4279-b3e2-abb79fc76749" type="ANY">
+			<ee:transform doc:name="error Response" doc:id="3877d97d-b7ab-4eed-bd62-473b6f43bf8a" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	message: error.description
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+		</on-error-propagate>
+	</error-handler>
+</mule>

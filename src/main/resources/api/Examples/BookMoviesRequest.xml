@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<goj:movies xmlns:goj="http://goj.demo.com">
+	<goj:movieName>FREE GUY</goj:movieName>
+	<goj:theaterName>PVR</goj:theaterName>
+	<goj:location>PUNE</goj:location>
+	<goj:date>2021-12-09</goj:date>
+	<goj:screenNo>3</goj:screenNo>
+	<goj:NumberOfSeats>8</goj:NumberOfSeats>
+	<goj:costPerSeat>10</goj:costPerSeat>
+	<goj:discount>150</goj:discount>
+</goj:movies>
